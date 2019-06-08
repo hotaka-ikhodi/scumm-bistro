@@ -1,0 +1,4 @@
+*/build/*
+.idea/*
+data_core
+.gradle

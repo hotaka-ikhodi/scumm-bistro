@@ -1,0 +1,25 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+}
+
+sourceCompatibility = 1.8
+
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+application {
+    mainClassName = 'com.scumm.api.App'
+}
+
+bootJar {
+    mainClassName = 'com.scumm.api.App'
+}
+
+dependencies {
+    compile project (":scumm-core")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
