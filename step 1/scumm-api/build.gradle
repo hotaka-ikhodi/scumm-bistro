@@ -23,3 +23,27 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+task startApiContainer() {
+    group = 'Docker'
+    description = 'Arranca el contenedor de api'
+
+    doLast {
+        exec {
+            executable 'docker'
+            args 'start', 'scumm_api'
+        }
+    }
+}
+
+task stopApiContainer() {
+    group = 'Docker'
+    description = 'Detiene el contenedor de api'
+
+    doLast {
+        exec {
+            executable 'docker'
+            args 'stop', 'scumm_api'
+        }
+    }
+}

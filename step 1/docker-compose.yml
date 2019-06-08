@@ -21,6 +21,7 @@ services:
       - 5672:5672
 
   scumm-api:
+    container_name: scumm_api
     build: ./scumm-api
     ports:
       - 8080:8080

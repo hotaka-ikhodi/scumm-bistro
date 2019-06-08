@@ -21,4 +21,42 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: '4.12'
         testCompile "org.mockito:mockito-core:2.+"
     }
+
+    task buildContainer() {
+        dependsOn ':scumm-api:installBootDist'
+        group = 'Docker'
+        description = 'Crea los contenedores'
+
+        doLast {
+            exec {
+                executable 'docker-compose'
+                args 'build'
+            }
+        }
+    }
+
+    task upContainers() {
+        group = 'Docker'
+        description = 'Levanta los contenedores'
+
+        doLast {
+            exec {
+                executable 'docker-compose'
+                args 'up', '-d'
+            }
+        }
+    }
+
+    task downContainers() {
+        group = 'Docker'
+        description = 'Elimina los contenedores'
+
+        doLast {
+            exec {
+                executable 'docker-compose'
+                args 'down'
+            }
+        }
+    }
+
 }
