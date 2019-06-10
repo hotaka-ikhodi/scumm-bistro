@@ -1,0 +1,37 @@
+version: '3'
+services:
+
+  scummmongo:
+    container_name: scummmongo
+    image: "mongo"
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data_core/mongo:/data/db
+
+  scummrabbit:
+    container_name: scummrabbit
+    hostname: scummrabbit
+    image: "rabbitmq:management"
+    environment:
+      - RABBITMQ_DEFAULT_USER=micros_user
+      - RABBITMQ_DEFAULT_PASS=oJ3847PGtw3DCvbA1eeR2
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+  scumm-api:
+    container_name: scumm_api
+    build: ./scumm-api
+    ports:
+      - 8080:8080
+    environment:
+      - SCUMM_ENVIRONMENT=docker
+      - SCUMM_MONGODB_URI=mongodb://scummmongo:27017
+      - SCUMM_AMQP_SERVER=amqp://micros_user:oJ3847PGtw3DCvbA1eeR2@scummrabbit:5672
+    depends_on:
+      - scummmongo
+      - scummrabbit
+    links:
+      - scummmongo
+      - scummrabbit

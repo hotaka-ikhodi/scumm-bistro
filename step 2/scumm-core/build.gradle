@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot', version:'2.1.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version:'2.1.4.RELEASE'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE'
+}
