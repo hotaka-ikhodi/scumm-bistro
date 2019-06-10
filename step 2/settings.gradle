@@ -1,3 +1,4 @@
 include 'scumm-api'
 include 'scumm-core'
+include 'scumm-bdd-test'
 
